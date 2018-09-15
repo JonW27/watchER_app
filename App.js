@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, Button, Alert} from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
 {/*}
 const instructions = Platform.select({
@@ -19,7 +20,7 @@ const instructions = Platform.select({
 */}
 
 type Props = {};
-export default class App extends Component<Props> {
+export class SplashScreen extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
@@ -29,13 +30,27 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>There for you, just in case</Text>
         <Button
           onPress={() => {
-            Alert.alert('You tapped the button!');
+            this.props.navigation.navigate('Dashboard')
           }}
           title="Open"
         />
         {/*}<Text style={styles.instructions}>{instructions}</Text> */}
       </View>
     );
+  }
+}
+
+export default class App extends React.Component {
+  render() {
+    return <RootStack />;
+  }
+}
+
+class DashboardScreen extends Component {
+  render() {
+    return(
+      <Text>Lol</Text>
+    )
   }
 }
 
@@ -57,3 +72,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+const RootStack = createStackNavigator({
+  Home: SplashScreen,
+  Dashboard : DashboardScreen,
+},
+{
+  initialRouteName: 'Home',
+}
+);
