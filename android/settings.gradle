@@ -1,0 +1,3 @@
+rootProject.name = 'watch_ER'
+
+include ':app'
